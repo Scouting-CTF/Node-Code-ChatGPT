@@ -43,30 +43,26 @@ app.post('/ctf', (req, res) => {
 });
 
 // Route to retrieve the latest UUID for each node
+// Route to retrieve unique node IDs
 app.get('/scoreboard', (req, res) => {
-    const nodes = ['alpha', 'beta', 'charlie', 'delta', 'echo'];
     const query = `
-        SELECT SystemID, NodeID, UUID, timestamp
+        SELECT NodeID, UUID, timestamp
         FROM nodes
-        WHERE NodeID IN (${nodes.map(node => `'${node}'`).join(', ')})
-        ORDER BY NodeID, timestamp DESC;
+        WHERE (NodeID, timestamp) IN (
+            SELECT NodeID, MAX(timestamp)
+            FROM nodes
+            GROUP BY NodeID
+        )
+        ORDER BY NodeID;
     `;
     db.all(query, [], (err, rows) => {
         if (err) {
             return res.status(500).json({ error: err.message });
         }
-        // Create an object to store the latest record per node
-        const latestRecords = {};
-        rows.forEach(row => {
-            if (!latestRecords[row.NodeID]) {
-                latestRecords[row.NodeID] = row;
-            }
-        });
-        // Convert the object into an array
-        const latestRecordsArray = Object.values(latestRecords);
-        res.render('scoreboard', { nodes: latestRecordsArray });
+        res.render('scoreboard', { nodes: rows });
     });
 });
+
 
 // Start the server
 app.listen(port, () => {

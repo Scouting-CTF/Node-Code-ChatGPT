@@ -12,7 +12,7 @@
         }
         th, td {
             padding: 15px;
-            text-align: left;
+            text-align: center;
         }
         th {
             background-color: #f2f2f2;
@@ -22,18 +22,20 @@
 <body>
     <h1>Nodes Dashboard</h1>
     <table>
-        <tr>
-            <th>NodeID</th>
-            <th>UUID</th>
-            <th>Timestamp</th>
-        </tr>
-        <% nodes.forEach(node => { %>
+        <thead>
             <tr>
-                <td><%= node.NodeID %></td>
-                <td><%= node.UUID %></td>
-                <td><%= node.timestamp %></td>
+                <% nodes.forEach(node => { %>
+                    <th><%= node.NodeID %></th>
+                <% }) %>
             </tr>
-        <% }) %>
+        </thead>
+        <tbody>
+            <tr>
+                <% nodes.forEach(node => { %>
+                    <td><%= node.timestamp %><br><%= node.UUID %></td>
+                <% }) %>
+            </tr>
+        </tbody>
     </table>
 </body>
 </html>

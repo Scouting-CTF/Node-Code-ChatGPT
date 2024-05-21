@@ -162,8 +162,8 @@ Serial.println(F("Data uploaded"));
 Serial.println("making POST request");
 
   PostSystemID = "SystemID=CTF&";
-  PostNodeID = "NodeID=";
-  PostImei = modem.getIMEI();
+  PostNodeID = "NodeID=Charlie";
+ //PostImei = modem.getIMEI();
   PostUUID = "&UUID=" + String(uuid);
   String postData = PostSystemID + PostNodeID + PostImei + PostUUID;
 
