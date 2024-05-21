@@ -4,7 +4,7 @@
  * Setup Receiving Server
  */
 const char* server  = "vuurmuur.west-data.nl";
-const int  port       = 80;
+const int  port       = 8990;
 
 /*  
  * Setup APN

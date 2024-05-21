@@ -1,0 +1,19 @@
+{
+    "name": "ctf_server",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+      "start": "node app.js",
+      "docker-build": "docker build -t ctf_server .",
+      "docker-run": "docker run -p 8990:8990 ctf_server"
+    },
+    "dependencies": {
+      "body-parser": "^1.19.0",
+      "ejs": "^3.1.6",
+      "express": "^4.17.1",
+      "sqlite3": "^5.0.2"
+    },
+    "author": "",
+    "license": "ISC"
+  }  
