@@ -2,8 +2,9 @@ version: '3.8'
 
 services:
   ctfserver:
-    image: ctfserver:latest
-    network_mode: host
+    image: dhrsoulslayer/ctfserver
+    ports:
+      - "8990:8990"
     volumes:
       - ./ctf_database.db:/usr/src/app/ctf_database.db
     environment:
