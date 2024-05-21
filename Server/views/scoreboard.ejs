@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Scoreboard</title>
+    <title>Nodes Dashboard</title>
     <style>
         table {
             width: 100%;
@@ -20,16 +20,20 @@
     </style>
 </head>
 <body>
-    <h1>Scoreboard</h1>
+    <h1>Nodes Dashboard</h1>
     <table>
         <tr>
-            <th>Team Name</th>
-            <th>Score</th>
+            <th>SystemID</th>
+            <th>NodeID</th>
+            <th>UUID</th>
+            <th>Timestamp</th>
         </tr>
-        <% teams.forEach(team => { %>
+        <% nodes.forEach(node => { %>
             <tr>
-                <td><%= team.name %></td>
-                <td><%= team.score %></td>
+                <td><%= node.SystemID %></td>
+                <td><%= node.NodeID %></td>
+                <td><%= node.UUID %></td>
+                <td><%= node.timestamp %></td>
             </tr>
         <% }) %>
     </table>
