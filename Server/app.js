@@ -44,21 +44,27 @@ app.post('/ctf', (req, res) => {
 
 // Route to retrieve the latest UUID for each node
 app.get('/scoreboard', (req, res) => {
+    const nodes = ['alpha', 'beta', 'charlie', 'delta', 'echo'];
     const query = `
         SELECT SystemID, NodeID, UUID, timestamp
         FROM nodes
-        WHERE (SystemID, NodeID, timestamp) IN (
-            SELECT SystemID, NodeID, MAX(timestamp)
-            FROM nodes
-            GROUP BY SystemID, NodeID
-        )
-        ORDER BY SystemID, NodeID;
+        WHERE NodeID IN (${nodes.map(node => `'${node}'`).join(', ')})
+        ORDER BY NodeID, timestamp DESC;
     `;
     db.all(query, [], (err, rows) => {
         if (err) {
             return res.status(500).json({ error: err.message });
         }
-        res.render('scoreboard', { nodes: rows });
+        // Create an object to store the latest record per node
+        const latestRecords = {};
+        rows.forEach(row => {
+            if (!latestRecords[row.NodeID]) {
+                latestRecords[row.NodeID] = row;
+            }
+        });
+        // Convert the object into an array
+        const latestRecordsArray = Object.values(latestRecords);
+        res.render('scoreboard', { nodes: latestRecordsArray });
     });
 });
 

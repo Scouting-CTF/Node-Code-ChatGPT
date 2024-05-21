@@ -23,14 +23,12 @@
     <h1>Nodes Dashboard</h1>
     <table>
         <tr>
-            <th>SystemID</th>
             <th>NodeID</th>
             <th>UUID</th>
             <th>Timestamp</th>
         </tr>
         <% nodes.forEach(node => { %>
             <tr>
-                <td><%= node.SystemID %></td>
                 <td><%= node.NodeID %></td>
                 <td><%= node.UUID %></td>
                 <td><%= node.timestamp %></td>
