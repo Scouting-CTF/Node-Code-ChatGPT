@@ -6,29 +6,27 @@ Benodigdheden:
 
 LilyGO T-Call ESP32 bord met LTE/GPRS module
 MFRC522 RFID-lezer
-I2C LCD-scherm (2x16 karakters)
+3 kleuren leds, Groen Blauw en Rood
 RFID-kaarten (Voorgeprogrammeerd met unieke ID's)
 Aansluitingen:
 
 Sluit de MFRC522 RFID-lezer aan op de ESP32 volgens de specificaties van de bibliotheek die wordt gebruikt.
-Verbind het I2C LCD-scherm met de SDA- en SCL-pinnen van de ESP32.
 Code:
 
 Upload de gegeven Arduino-code naar de ESP32.
 Werkingsprincipe:
 
-Bij opstarten toont het LCD-scherm "Booting.." en maakt verbinding met het GPRS-netwerk.
-Zodra de verbinding is gemaakt, wordt "Ready" weergegeven op het scherm en de groene LED gaat branden.
-Wanneer een RFID-kaart wordt gedetecteerd, wordt de unieke ID van de kaart gelezen en gecontroleerd tegen een lijst van bekende kaarten.
-Als de kaart bekend is, wordt de ID via een HTTP POST-verzoek naar de server verzonden.
-Het LCD-scherm toont "Captured" en de rode LED gaat branden.
-Na de succesvolle verzending wordt nieuwe RFID-invoer niet meer geaccepteerd.
-Het apparaat gaat vervolgens in een korte slaapstand voordat het de lus opnieuw start.
+Zodra de ESP van stroom wordt voorzien wordt de RFID reader geinitialiseerd.
+Zodra dit klaar is gaat de groene led branden waarmee aangegeven wordt dat het systeem klaar is om te scannen.
+Als er een tag gescand wordt gaat de groene led uit en gaat er een blauwe led aan, dit geeft aan dat de gegevens worden verstuurd.
+Zodra alle gegevens succesvol zijn verstuurd gaat de blauwe led uit en de rode led aan. Dit geeft aan dat de ESP klaar is en er niks meer mee gedaan kan worden.
+
+
 Opmerkingen:
 
-De deep sleep-functie is uitgeschakeld in deze code.
 De debug-modus is uitgeschakeld.
 Controleer of alle bibliotheken correct zijn geïnstalleerd.
+
 Notities:
 
 Dit project kan worden aangepast om verschillende taken uit te voeren of andere sensoren toe te voegen, afhankelijk van de behoeften van het specifieke project.

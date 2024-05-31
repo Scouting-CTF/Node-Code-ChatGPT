@@ -14,6 +14,21 @@ const char gprsUser[] = ""; // GPRS User
 const char gprsPass[] = ""; // GPRS Password
 const char simPIN[]   = ""; //SIM Pin
 
+
+/*
+* Setup Status LEDS
+*/
+#define LED_RED_GPIO 32 
+#define LED_BLUE_GPIO 33
+#define LED_GREEN_GPIO 34
+
+#define LED_RED_ON HIGH
+#define LED_RED_OFF LOW
+#define LED_BLUE_ON HIGH
+#define LED_BLUE_OFF LOW
+#define LED_GREEN_ON HIGH
+#define LED_GREEN_OFF LOW
+
 #define SIM800L_IP5306_VERSION_20200811
 
 // Define the serial console for debug prints, if needed
